@@ -6,6 +6,9 @@ import axios from 'axios';
 
 const SignUpPage = () => {
 
+    const [error, seterror] = useState("");
+    const [msg, setmsg] = useState("");
+
     const postSignUpInfo = async (e) => {
         console.log(signUpInfo);
         try {
@@ -19,7 +22,15 @@ const SignUpPage = () => {
                 data: JSON.stringify({ data: signUpInfo }),
             });
             console.log(result);
-            localStorage.setItem("jwt", result.data.token);
+            if (result.data.status === "error") {
+                console.log(result.data.error);
+                seterror(result.data.error);
+                setmsg("");
+            }
+            else {
+                seterror("");
+                setmsg("An verification Email has been send to you mail!")
+            }
         }
         catch (error) {
             console.log(error);
@@ -37,18 +48,18 @@ const SignUpPage = () => {
         <div className="SignUpPageDiv">
             <form className="HomeSignUpForm">
                 <img
-                    class="mb-4"
+                    className="mb-4"
                     src={InstagramIconText}
                     alt=""
                     width="200"
                 ></img>
-                <h1 class="h3 mb-3 fw-normal">Please Sign Up</h1>
+                <h1 className="h3 mb-3 fw-normal">Please Sign Up</h1>
 
-                <div class="form-floating">
+                <div className="form-floating">
                     <input
                         type="text"
-                        class="form-control"
-                        id="floatingInput"
+                        className="form-control"
+                        id="floatingInputFullname"
                         placeholder="Deepesh Dragoneel"
                         onChange={(e) => {
                             setsignUpInfo({
@@ -57,13 +68,13 @@ const SignUpPage = () => {
                             });
                         }}
                     ></input>
-                    <label for="floatingInput">Fullname</label>
+                    <label htmlFor="floatingInputFullname">Fullname</label>
                 </div>
-                <div class="form-floating">
+                <div className="form-floating">
                     <input
                         type="text"
-                        class="form-control"
-                        id="floatingInput"
+                        className="form-control"
+                        id="floatingInputUsername"
                         placeholder="deepeshdragoneel"
                         onChange={(e) => {
                             setsignUpInfo({
@@ -72,13 +83,13 @@ const SignUpPage = () => {
                             });
                         }}
                     ></input>
-                    <label for="floatingInput">Username</label>
+                    <label htmlFor="floatingInputUsername">Username</label>
                 </div>
-                <div class="form-floating">
+                <div className="form-floating">
                     <input
                         type="email"
-                        class="form-control"
-                        id="floatingInput"
+                        className="form-control"
+                        id="floatingInputEmail"
                         placeholder="name@example.com"
                         onChange={(e) => {
                             setsignUpInfo({
@@ -87,32 +98,52 @@ const SignUpPage = () => {
                             });
                         }}
                     ></input>
-                    <label for="floatingInput">Email address</label>
+                    <label htmlFor="floatingInputEmail">Email address</label>
                 </div>
-                <div class="form-floating">
+                <div className="form-floating">
                     <input
                         type="password"
-                        class="form-control"
+                        className="form-control"
                         id="floatingPassword"
                         placeholder="Password"
                         onChange={(e) => {
                             setsignUpInfo({
                                 ...signUpInfo,
-                                password: e.target.value
+                                password: e.target.value,
                             });
                         }}
                     ></input>
-                    <label for="floatingPassword">Password</label>
+                    <label htmlFor="floatingPassword">Password</label>
+                </div>
+                <div
+                    className="alert alert-danger"
+                    role="alert"
+                    style={{
+                        display: `${error === "" ? "none" : ""}`,
+                    }}
+                >
+                    {error}
+                </div>
+                <div
+                    className="alert alert-success"
+                    role="alert"
+                    style={{
+                        display: `${msg === "" ? "none" : ""}`,
+                        width: "90%",
+                        margin: " 1rem auto"
+                    }}
+                >
+                    {msg}
                 </div>
                 <button
                     type="button"
-                    class="w-100 btn btn-lg btn-primary mb-3"
+                    className="w-100 btn btn-lg btn-primary mb-3"
                     onClick={postSignUpInfo}
                 >
                     Sign Up
                 </button>
                 <Link to="/">Have an Account?</Link>
-                <p class="mt-3 mb-2 text-muted">Instagram Clone</p>
+                <p className="mt-3 mb-2 text-muted">Instagram Clone</p>
             </form>
         </div>
     );

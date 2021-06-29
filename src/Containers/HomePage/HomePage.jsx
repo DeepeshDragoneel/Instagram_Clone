@@ -2,19 +2,20 @@ import React, { useState } from "react";
 import "./HomePage.scss";
 import InstagramPhone from "../../assets/homepageSideImage.jpg";
 import InstagramIconText from "../../assets/instagramIconText.png";
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from "react-router-dom";
 import axios from "axios";
 
 const HomePage = () => {
-
     const [userInfo, setuserInfo] = useState({
         username: "",
-        password: ""
-    })
+        password: "",
+    });
+
+    const history = useHistory();
 
     const [error, seterror] = useState("");
 
-    const postSignInInfo = async() => {
+    const postSignInInfo = async () => {
         try {
             const result = await axios({
                 method: "POST",
@@ -27,18 +28,18 @@ const HomePage = () => {
             });
             console.log(result.data);
             if (result.data.resutl === "SUCCESS") {
-                localStorage.setItem("jwt", result.data.token);
+                localStorage.setItem("i_c_jwt", result.data.token);
+                localStorage.setItem("i_c_username", result.data.username);
                 seterror("");
-            }
-            else {
+                window.location.reload();
+            } else {
                 console.log("ERROR");
                 seterror("error");
             }
-        }
-        catch(error) {
+        } catch (error) {
             console.log(error);
         }
-    }
+    };
 
     return (
         <div className="homePage">
@@ -50,17 +51,17 @@ const HomePage = () => {
                 ></img>
                 <form className="HomeSignInForm">
                     <img
-                        class="mb-4"
+                        className="mb-4"
                         src={InstagramIconText}
                         alt=""
                         width="200"
                     ></img>
-                    <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
+                    <h1 className="h3 mb-3 fw-normal">Please sign in</h1>
 
-                    <div class="form-floating">
+                    <div className="form-floating">
                         <input
                             type="email"
-                            class="form-control"
+                            className="form-control"
                             id="floatingInput"
                             placeholder="name@example.com"
                             onChange={(e) => {
@@ -72,10 +73,10 @@ const HomePage = () => {
                         ></input>
                         <label for="floatingInput">Username</label>
                     </div>
-                    <div class="form-floating">
+                    <div className="form-floating">
                         <input
                             type="password"
-                            class="form-control"
+                            className="form-control"
                             id="floatingPassword"
                             placeholder="Password"
                             onChange={(e) => {
@@ -87,26 +88,31 @@ const HomePage = () => {
                         ></input>
                         <label for="floatingPassword">Password</label>
                     </div>
-                    <div class="alert alert-danger" role="alert" style={
-                        {
-                            display: `${error === "" ? "none" : ""}`
-                        }
-                    }>
+                    <div
+                        className="alert alert-danger"
+                        role="alert"
+                        style={{
+                            display: `${error === "" ? "none" : ""}`,
+                        }}
+                    >
                         Invalid Credentials!
                     </div>
                     <button
-                        class="w-100 btn btn-lg btn-primary mb-3"
+                        className="w-100 btn btn-lg btn-primary mb-3"
                         type="button"
-                        onClick={postSignInInfo}
+                        onClick={() => {
+                            postSignInInfo();
+                            history.push("../");
+                        }}
                     >
                         Sign in
                     </button>
                     <Link to="/signUp">Don't Have an Account?</Link>
-                    <p class="mt-5 mb-3 text-muted">Instagram Clone</p>
+                    <p className="mt-5 mb-3 text-muted">Instagram Clone</p>
                 </form>
             </div>
         </div>
     );
-}
+};
 
 export default HomePage;
