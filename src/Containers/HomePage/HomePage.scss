@@ -1,0 +1,35 @@
+.homePage {
+    height: 100%;
+    width: 100%;
+    background-color: rgb(255, 255, 255) !important;
+    padding: 4rem;
+    .HomeLoginDiv {
+        margin: auto;
+        vertical-align: middle;
+        min-height: 60%;
+        display: flex;
+        justify-content: center;
+        .InstagramPhoneHome {
+            height: 400px;
+            margin: 3rem;
+            @media screen and (max-width: 785px) {
+                display: none;
+            }
+        }
+        .HomeSignInForm {
+            padding: 2rem;
+            background-color: rgb(255, 255, 255);
+            border: rgb(160, 158, 158) 0.5px solid;
+            border-radius: 10px;
+            box-shadow: 2px 9px 18px 0px rgba(0, 0, 0, 0.24);
+            -webkit-box-shadow: 2px 9px 18px 0px rgba(0, 0, 0, 0.24);
+            -moz-box-shadow: 2px 9px 18px 0px rgba(0, 0, 0, 0.24);
+            input{
+                margin-bottom: 5px;
+            }
+            a{
+                margin-top: 2rem;
+            }
+        }
+    }
+}
