@@ -4,13 +4,9 @@ import SignUpPage from "./Containers/SignUpPage/SignUpPage";
 import { Switch, Route } from "react-router-dom";
 import AccountHomePage from "./Containers/AccountHomePage/AccountHomePage";
 import { useSelector } from "react-redux";
-import { useState } from "react";
-import store from "./redux/store";
 
 function App() {
-    const [authenticated, setauthenticated] = useState(
-        useSelector((state) => state.auth.loggedIn)
-    );
+    const authenticated = useSelector((state) => state.auth.loggedIn);
     return (
         <div className="App">
             <Switch>

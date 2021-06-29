@@ -30,6 +30,7 @@ const HomePage = () => {
             if (result.data.resutl === "SUCCESS") {
                 localStorage.setItem("i_c_jwt", result.data.token);
                 localStorage.setItem("i_c_username", result.data.username);
+                localStorage.setItem("i_c_profile_pic", result.data.profilePic);
                 seterror("");
                 window.location.reload();
             } else {

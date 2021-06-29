@@ -1,0 +1,24 @@
+.MainNavBarDiv {
+    width: 100%;
+    height: 3rem;
+    // border-bottom: 1px solid black;
+    box-shadow: 1px 1px 2px 1px rgba(0, 0, 0, 0.3);
+    -webkit-box-shadow: 1px 1px 2px 1px rgba(0, 0, 0, 0.3);
+    -moz-box-shadow: 1px 1px 2px 1px rgba(0, 0, 0, 0.3);
+    display: flex;
+    align-items: center;
+    .instagramIconText{
+        width: 8rem;
+        margin-right: auto;
+        margin-left: 4rem;
+    }
+    .navbarLink{
+        margin: auto 1rem auto 0rem;
+        .navbarLinkProfilePic{
+            border: 1px solid black;
+            width: 1.8rem;
+            border-radius: 50%;
+            margin-right: 4rem;
+        }
+    }
+}
