@@ -1,15 +1,18 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./HomePage.scss";
 import InstagramPhone from "../../assets/homepageSideImage.jpg";
 import InstagramIconText from "../../assets/instagramIconText.png";
 import { Link, useHistory } from "react-router-dom";
 import axios from "axios";
+import { useDispatch } from "react-redux";
 
 const HomePage = () => {
     const [userInfo, setuserInfo] = useState({
         username: "",
         password: "",
     });
+
+    const dispatch = useDispatch();
 
     const history = useHistory();
 
@@ -31,6 +34,7 @@ const HomePage = () => {
                 localStorage.setItem("i_c_jwt", result.data.token);
                 localStorage.setItem("i_c_username", result.data.username);
                 localStorage.setItem("i_c_profile_pic", result.data.profilePic);
+                dispatch({ type: "LOGIN_USER" });
                 seterror("");
                 window.location.reload();
             } else {
@@ -41,6 +45,8 @@ const HomePage = () => {
             console.log(error);
         }
     };
+
+    
 
     return (
         <div className="homePage">
@@ -58,7 +64,6 @@ const HomePage = () => {
                         width="200"
                     ></img>
                     <h1 className="h3 mb-3 fw-normal">Please sign in</h1>
-
                     <div className="form-floating">
                         <input
                             type="email"
@@ -72,7 +77,7 @@ const HomePage = () => {
                                 });
                             }}
                         ></input>
-                        <label for="floatingInput">Username</label>
+                        <label htmlFor="floatingInput">Username</label>
                     </div>
                     <div className="form-floating">
                         <input
@@ -87,7 +92,7 @@ const HomePage = () => {
                                 });
                             }}
                         ></input>
-                        <label for="floatingPassword">Password</label>
+                        <label htmlFor="floatingPassword">Password</label>
                     </div>
                     <div
                         className="alert alert-danger"

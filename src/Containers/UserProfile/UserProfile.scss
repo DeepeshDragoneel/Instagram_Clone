@@ -1,0 +1,47 @@
+.userProfileMainDiv{
+    p{
+        margin: 0;
+    }
+    .userProfileInfo{
+        display: flex;
+        max-width: 100%;
+        margin: auto;
+        align-items: center;
+        justify-content: center;
+    }
+    .userProfileImage{
+        // width: fit-content;
+        margin: 5rem;
+        img{
+            border-radius: 50%;
+        }
+    }
+    .userProfileDetailes{
+        margin-left: 1rem;
+        text-align: start;
+        width: 50%;
+        .userProfileDeatilesUsernameTab{
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            p{
+                font-size: 2rem;
+                font-weight: 400;
+            }
+        }
+        .userProfileDetailesStats{
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            margin: 1rem auto;
+            p{
+                margin-right: 5rem;
+            }
+        }
+        .userProfileDetailesNameBioTab{
+            .userProfileDetailesFullName{
+                font-weight: 700;
+            }
+        }
+    }
+}

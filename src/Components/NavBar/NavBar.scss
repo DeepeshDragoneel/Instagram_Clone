@@ -7,18 +7,52 @@
     -moz-box-shadow: 1px 1px 2px 1px rgba(0, 0, 0, 0.3);
     display: flex;
     align-items: center;
-    .instagramIconText{
+    .instagramIconText {
         width: 8rem;
         margin-right: auto;
         margin-left: 4rem;
+        @media (max-width: "582px") {
+            margin-left: 1rem;
+        }
+        @media (max-width: "392px") {
+            margin-left: 0.5rem;
+        }
     }
-    .navbarLink{
-        margin: auto 1rem auto 0rem;
-        .navbarLinkProfilePic{
-            border: 1px solid black;
+    .profilePicNavButton{
+        // background-color: black;
+        border: 0;
+        background: transparent;
+        margin: auto 4rem auto 0rem;
+        @media (max-width: "552px") {
+            margin-right: 1rem;
+            width: 1.4rem;
+        }
+        @media (max-width: "392px") {
+            margin-right: 0.5rem;
+            width: 1.4rem;
+        }
+        .navbarLinkProfilePic {
             width: 1.8rem;
             border-radius: 50%;
-            margin-right: 4rem;
+            // margin-right: 4rem;
+            border: 1px solid black;
+            @media (max-width: "392px") {
+                width: 1.4rem;
+            }
+        }
+        .profilePicSizeClass {
+            border: 1px solid black;
+            padding: 2px;
+        }
+    }
+    .navbarLink {
+        margin: auto 1rem auto 0rem;
+        .NavLinkIcon{
+            font-size: 1.8rem;
+            color: black;
+            @media (max-width: "392px") {
+                width: 1.4rem;
+            }
         }
     }
 }
