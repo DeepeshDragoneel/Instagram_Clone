@@ -3,15 +3,30 @@ import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import NavBar from "../../../Components/NavBar/NavBar";
 import { NavLink } from "react-router-dom";
+import { makeStyles } from "@material-ui/core/styles";
+import Alert from "@material-ui/lab/Alert";
 import "./EditPorfile.scss";
+
+const useStyles = makeStyles((theme) => ({
+    root: {
+        width: "100%",
+        "& > * + *": {
+            marginTop: theme.spacing(2),
+        },
+    },
+}));
 
 const EditPorfile = () => {
     const [user, setuser] = useState();
     const [usernameChanged, setusernameChanged] = useState(false);
-    const [originalUserName, setoriginalUserName] = useState("")
+    const [originalUserName, setoriginalUserName] = useState("");
+    const [error, seterror] = useState("");
+    const [success, setsuccess] = useState("")
     let temp;
 
     const h = useHistory();
+
+    const classes = useStyles();
 
     const submitUserDetails = async() => {
         const result = await axios({
@@ -23,10 +38,18 @@ const EditPorfile = () => {
             },
             data: JSON.stringify({
                 user: user,
-                usernameChanged: usernameChanged,
+                usernameChanged: user.user.username !== originalUserName,
                 originalUserName: originalUserName
             })
         });
+        if (result.data.status === "error") {
+            seterror(result.data.msg);
+            setsuccess("");
+        }
+        else {
+            seterror("");
+            setsuccess(result.data.msg);
+        }
     }
 
     const getUserDetails = async () => {
@@ -66,6 +89,28 @@ const EditPorfile = () => {
             <NavBar></NavBar>
             {user !== {} && user !== undefined ? (
                 <div className="editProfileMainDiv">
+                    {error !== "" ? (
+                        <Alert
+                            severity="error"
+                            style={{
+                                width: "80%",
+                                margin: "auto",
+                            }}
+                        >
+                            {error}
+                        </Alert>
+                    ) : null}
+                    {success !== "" ? (
+                        <Alert
+                            severity="success"
+                            style={{
+                                width: "80%",
+                                margin: "auto",
+                            }}
+                        >
+                            {success}
+                        </Alert>
+                    ) : null}
                     <div className="editProfileEditor">
                         <h1
                             style={{
@@ -167,15 +212,7 @@ const EditPorfile = () => {
                                 type="email"
                                 id="useProflleEmail"
                                 value={user.user.email}
-                                onChange={(event) => {
-                                    setuser((i) => ({
-                                        ...i,
-                                        user: {
-                                            ...i.user,
-                                            email: event.target.value,
-                                        },
-                                    }));
-                                }}
+                                readOnly
                             ></input>
                         </div>
                         <div
