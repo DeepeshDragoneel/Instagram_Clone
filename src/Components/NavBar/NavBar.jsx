@@ -208,12 +208,17 @@ const NavBar = () => {
                                                     paddingBottom: "10px"
                                                 }}
                                                 onClick={(e) => {
+                                                    setprofilePicSizeClass("");
+                                                    setNavBarHome(false);
+                                                    setNavBarMsg(false);
                                                     handleClose(e);
                                                     const username =
                                                         localStorage.getItem(
                                                             "i_c_username"
                                                         );
-                                                    h.push(`/${username}/`);
+                                                    h.push(
+                                                        `/user/${username}/`
+                                                    );
                                                 }}
                                             >
                                                 <AccountCircleOutlinedIcon

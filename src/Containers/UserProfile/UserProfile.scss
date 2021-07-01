@@ -8,6 +8,7 @@
         margin: auto;
         align-items: center;
         justify-content: center;
+        flex-wrap: wrap;
     }
     .userProfileImage{
         // width: fit-content;
@@ -20,10 +21,16 @@
         margin-left: 1rem;
         text-align: start;
         width: 50%;
+        @media (max-width: 670px){
+            width: 90%;
+            margin-left: 0;
+        }
         .userProfileDeatilesUsernameTab{
             display: flex;
             align-items: center;
             justify-content: flex-start;
+            flex-wrap: wrap;
+            word-break: break-all;
             p{
                 font-size: 2rem;
                 font-weight: 400;
@@ -36,12 +43,46 @@
             margin: 1rem auto;
             p{
                 margin-right: 5rem;
+                @media (max-width: "480px"){
+                    margin-right: 2rem;
+                }
             }
         }
         .userProfileDetailesNameBioTab{
             .userProfileDetailesFullName{
                 font-weight: 700;
             }
+        }
+    }
+    .userPosts{
+        margin-top: 2rem;
+        h1{
+            font-size: 1.1rem;
+            letter-spacing: 3px;
+            font-weight: 700;
+        }
+        .userPostsDisplay{
+            margin-top: 2rem;
+            margin-bottom: 4rem;
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            width: 100%;
+            .userDisplayPost{
+                width: 25%;
+                @media (max-width:"1000px"){
+                    width: 30%,
+                }
+                img{
+                    width: 100%;
+                }
+            }
+            .noPostsProfile{
+                font-size: 1.9rem;
+                font-weight: 500;
+                letter-spacing: 0px;
+            }
+
         }
     }
 }

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import "./HomePage.scss";
 import InstagramPhone from "../../assets/homepageSideImage.jpg";
 import InstagramIconText from "../../assets/instagramIconText.png";

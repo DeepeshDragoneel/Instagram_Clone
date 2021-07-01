@@ -5,6 +5,7 @@ import HomePage from "./Containers/HomePage/HomePage";
 import SignUpPage from "./Containers/SignUpPage/SignUpPage";
 import AccountHomePage from "./Containers/AccountHomePage/AccountHomePage";
 import UserProfile from "./Containers/UserProfile/UserProfile";
+import EditProfile from "./Containers/UserProfile/EditPorfile/EditPorfile";
 
 function App() {
     const authenticated = useSelector((state) => state.auth.loggedIn);
@@ -19,7 +20,12 @@ function App() {
                 <Switch>
                     <Route
                         exact
-                        path="/:username/"
+                        path="/editProfile"
+                        component={EditProfile}
+                    ></Route>
+                    <Route
+                        exact
+                        path="/user/:username/"
                         component={UserProfile}
                     ></Route>
                     <Route component={AccountHomePage}></Route>
